@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>VideoCall Sederhana</title>
+  <style>
+    :root { font-family: ui-sans-serif, system-ui, Arial; }
+    body { margin: 0; padding: 16px; background: #0f172a; color: #e2e8f0; }
+    h1 { margin: 0 0 12px; font-size: 20px; }
+    .card {
+      max-width: 1024px; margin: 0 auto; background: #111827; border: 1px solid #1f2937;
+      border-radius: 16px; padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,.3);
+    }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    input, button {
+      border-radius: 10px; border: 1px solid #334155; background: #0b1220; color: #e2e8f0;
+      padding: 10px 12px; outline: none;
+    }
+    input { min-width: 220px; }
+    button { cursor: pointer; }
+    button.primary { background: #2563eb; border-color: #3b82f6; }
+    button.danger { background: #be123c; border-color: #ef4444; }
+    button:disabled { opacity: .6; cursor: not-allowed; }
+    .videos {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start;
+    }
+    video {
+      width: 100%; background: #0b1220; border-radius: 16px; border: 1px solid #1f2937;
+      aspect-ratio: 16/9; object-fit: cover;
+    }
+    .hint { font-size: 12px; color: #94a3b8; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🔴 VideoCall Sederhana (WebRTC + Socket.IO)</h1>
+
+    <div class="controls">
+      <input id="room" type="text" placeholder="ID Room (bebas, contoh: ruang-kita)" />
+      <button id="btn-join" class="primary">Gabung</button>
+      <button id="btn-leave" class="danger" disabled>Tutup</button>
+      <button id="btn-mic">Mute</button>
+      <button id="btn-cam">Matikan Kamera</button>
+      <button id="btn-screen">Share Screen</button>
+    </div>
+
+    <div class="videos">
+      <div>
+        <div class="hint">Kamera Kamu</div>
+        <video id="localVideo" autoplay playsinline muted></video>
+      </div>
+      <div>
+        <div class="hint">Kamera Lawan Bicara</div>
+        <video id="remoteVideo" autoplay playsinline></video>
+      </div>
+    </div>
+
+    <div class="hint" id="status">
+      Status: belum bergabung. Buka tab/komputer lain dan pakai Room ID yang sama untuk melakukan panggilan.
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

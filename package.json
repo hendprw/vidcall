@@ -1,0 +1,14 @@
+{
+  "name": "videocall-simple",
+  "version": "1.0.0",
+  "description": "Simple WebRTC Video Call with Node.js, Express, Socket.IO",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
